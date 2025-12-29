@@ -1,0 +1,118 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Water Cycle Infographic</title>
+  <link rel="stylesheet" href="infographic.css">
+  <link rel="stylesheet" href="panel-content.css">
+</head>
+<body>
+
+  <div id="waterCycleInfographic" class="wrapper">
+    <ul class="tabs">
+      <li class="title">
+        The<br>Water<br>Cycle
+      </li>
+      <li class="tab"><button id="tab_1">☀</button></li>
+      <li class="tab"><button id="tab_2">☁</button></li>
+      <li class="tab"><button id="tab_3">🌧</button></li>
+      <li class="tab"><button id="tab_4">ꕀ</button></li>
+      <li class="arrow-1"><img src="arrow.svg" width="50" alt=""></li>
+      <li class="arrow-2"><img src="arrow.svg" width="50" alt=""></li>
+      <li class="arrow-3"><img src="arrow.svg" width="50" alt=""></li>
+      <li class="arrow-4"><img src="arrow.svg" width="50" alt=""></li>
+    </ul>
+    <div class="panels">
+
+      <dialog class="panel" closedby="any" id="panel_1">
+        <button class="close" aria-label="Close">&times;</button>
+        <article>
+          <h2>Evaporation</h2>
+          <p>The heat of the sun causes water from the surface of water bodies such as oceans, streams, and lakes to evaporate into <strong>water vapour</strong> in the atmosphere.</p>
+          <p>Plants also release water vapor through their leaves, while animals contribute through respiration and sweating. This biological water release is called <strong>transpiration</strong>.</p>
+        </article>
+        <figure>
+          <div class="sun"></div>
+          <div class="ground"></div>
+          <div class="pond"></div>
+          <span class="tree">🌳</span>
+          <span class="tree">🌳</span>
+          <span class="tree">🌲</span>
+          <span class="tree">🌳</span>
+          <span class="tree">🌲</span>
+        </figure>
+      </dialog>
+
+      <dialog class="panel" closedby="any" id="panel_2">
+        <button class="close" aria-label="Close">&times;</button>
+        <article>
+          <h2>Condensation</h2>
+          <p>As water vapour rises higher into the atmosphere, it encounters cooler temperatures where it condenses back into liquid water onto tiny particles of dust or salt in the air.</p>
+          <p>When trillions of these droplets cluster together densly enough, they form visible <strong>clouds</strong>.</p>
+        </article>
+        <figure>
+          <span class="cloud"></span>
+          <span class="cloud"></span>
+          <span class="cloud"></span>
+          <span class="cloud"></span>
+          <span class="cloud"></span>
+        </figure>
+      </dialog>
+
+      <dialog class="panel" closedby="any" id="panel_3">
+        <button class="close" aria-label="Close">&times;</button>
+        <article>
+          <h2>Precipitation</h2>
+          <p>Once water droplets clumping together in clouds become heavy enough, gravity takes over and they fall as precipitation. Depending on temperature and atmospheric conditions, precipitation occurs as <strong>rain</strong>, <strong>snow</strong>, <strong tabindex="0" data-tooltip="Precipitation of partly melted snow, or a mixture of rain and snow">sleet</strong>, or <strong tabindex="0" data-tooltip="Precipitation of ice pellets when there are strong rising air currents">hail</strong>.</p>
+        </article>
+        <figure class="fade-in"></figure>
+      </dialog>
+
+      <dialog class="panel" closedby="any" id="panel_4">
+        <button class="close" aria-label="Close">&times;</button>
+        <article>
+          <h2>Collection</h2>
+          <p>Water returns to the ground and collects in various reservoirs: <strong>oceans</strong>, <strong>lakes</strong>, <strong>glaciers</strong>, and underground <strong>aquifers</strong>. Some remains in these storage areas for long periods, while some quickly returns to the cycle through evaporation.</p>
+          <details name="collection">
+            <summary>Infiltration</summary>
+            Some water seeps into the ground through soil and rock layers. This infiltrated water replenishes underground aquifers and groundwater systems, where it can remain stored for long periods or leak into rivers and lakes.
+          </details>
+          <details name="collection">
+            <summary>Runoff</summary>
+            Some water flows across the land's surface through <strong>streams</strong> and <strong>rivers</strong> toward larger water bodies. This runoff shapes landscapes and carries minerals and nutrients along its path.
+          </details>
+        </article>
+        <figure class="fade-in">
+          <svg width="400%" height="200" viewBox="0 0 1350 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <defs>
+              <path id="wavePath" d="
+                M 0 75
+                C 150 0, 300 150, 450 75
+                C 600 0, 750 150, 900 75
+                C 1050 0, 1200 150, 1350 75
+                L 1350 150
+                L 0 150 Z" />
+            </defs>
+            <g class="wave-layer">
+              <use href="#wavePath" />
+              <use href="#wavePath" transform="translate(1349,0)" />
+            </g>
+            <g class="wave-layer">
+              <use href="#wavePath" transform="translate(0, 20)" />
+              <use href="#wavePath" transform="translate(1349, 20)" />
+            </g>
+            <g class="wave-layer">
+              <use href="#wavePath" transform="translate(0, 40)" />
+              <use href="#wavePath" transform="translate(1349, 40)" />
+            </g>
+          </svg>
+          <div class="soil"></div>
+        </figure>
+      </dialog>
+
+    </div>
+  </div>
+
+  <script src="infographic.js" defer></script>
+</body>
+</html>

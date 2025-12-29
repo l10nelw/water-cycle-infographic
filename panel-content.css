@@ -1,0 +1,263 @@
+/* Evaporation panel */
+
+#panel_1 {
+  --sunrise-duration: 4s;
+  background-color: dodgerblue;
+  transition: background-color var(--sunrise-duration);
+
+  &.animate {
+    background-color: lightskyblue;
+  }
+
+  article {
+    position: absolute;
+    z-index: 1;
+  }
+}
+.sun {
+  width: 5rem;
+  height: 5rem;
+  background-color: yellow;
+  border-radius: 50%;
+  right: 5rem;
+  bottom: 1rem;
+  box-shadow: none;
+  transition-property: bottom, background-color, box-shadow;
+  transition-duration: var(--sunrise-duration);
+
+  .animate & {
+    bottom: min(15rem, var(--width-mobile) - 10rem);
+    background-color: var(--light-yellow);
+    box-shadow: 0 0 5px 5px var(--light-yellow);
+  }
+}
+.ground {
+  bottom: 0;
+  width: 100%;
+  height: 6rem;
+  background-color: green;
+}
+.pond {
+  bottom: 1rem;
+  right: 1rem;
+  width: 70%;
+  height: 4rem;
+  background-color: deepskyblue;
+  border-radius: 50%;
+}
+.tree {
+  font-size: 4rem;
+  bottom: 5rem;
+
+  :nth-child(2 of &) {
+    left: 2rem;
+    z-index: 1;
+  }
+  :nth-child(3 of &) { left: 6rem; }
+  :nth-child(4 of &) { right: 5rem; }
+  :nth-child(5 of &) { right: 2rem; }
+}
+
+/* Condensation panel */
+
+#panel_2 {
+  background-color: lightsteelblue;
+  transition: background-color 5s;
+  &.animate { background-color: royalblue; }
+}
+.cloud {
+  color: white;
+  scale: 0;
+  transition: scale 3s;
+
+  .animate & {
+    scale: 100%;
+  }
+
+  &::after {
+    content: "☁";
+    position: absolute;
+    translate: -50% -50%;
+  }
+
+  :nth-child(1 of &) {
+    font-size: 140px;
+    top: 30%;
+    left: 20%;
+    transition-delay: .3s;
+  }
+
+  :nth-child(2 of &) {
+    font-size: 170px;
+    top: 34%;
+    right: 30%;
+    transform: scaleX(-1); /* Flip horizontal */
+    animation: 3s 1s infinite alternate shift-up;
+  }
+
+  :nth-child(3 of &) {
+    font-size: 250px;
+    left: 45%;
+    top: 50%;
+    z-index: 1;
+    animation: 3s infinite alternate shift-up;
+    transition: scale 5s .6s, color 5s 2s;
+    .animate & {
+      color: darkgray;
+    }
+  }
+
+  :nth-child(4 of &) {
+    font-size: 150px;
+    left: 27%;
+    bottom: 30%;
+    transition: scale 3s 1s;
+    opacity: .8;
+    z-index: 2;
+    animation: 4s 1.5s infinite alternate shift-up;
+  }
+
+  :nth-child(5 of &) {
+    font-size: 130px;
+    right: 35%;
+    bottom: 30%;
+    transition: scale 3s 2s;
+    opacity: .8;
+    z-index: 2;
+  }
+}
+@keyframes shift-up {
+  to { translate: 0 -10px; }
+}
+
+/* Precipitation panel */
+
+#panel_3 {
+  background-color: darkgray;
+
+  article {
+    padding-bottom: 1rem; /* Extra space for data-tooltip */
+  }
+
+  figure {
+    /* Rain effect adapted from https://stackoverflow.com/a/59922255 */
+    --rain-width: 53px;
+    --rain-height: 55px;
+    --rain-skew: -7deg;
+    --droplet: radial-gradient(1px 8px, darkgray 100%, transparent);
+    background: linear-gradient(darkgray, darkslategray 40%, darkslategray 70%, teal);
+    overflow: hidden;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: -20%;
+      left: -20%;
+      height: calc(100% + var(--rain-height) + 10px); /* should be bigger than (100% + var(--rain-height)) */
+      background:
+        var(--droplet) -12px 3px,
+        var(--droplet) 17px 0,
+        var(--droplet) 6px 12px,
+        var(--droplet) 24px 23px,
+        var(--droplet) 39px 30px,
+        var(--droplet) 5px 43px;
+      background-size: var(--rain-width) var(--rain-height);
+      animation: rain .2s linear infinite;
+      transform: skew(var(--rain-skew));
+    }
+    &::after {
+      --rain-height: 70px;
+      --rain-width: 61px;
+    }
+  }
+}
+@keyframes rain {
+  to {
+    transform:
+      skew(var(--rain-skew))
+      translateY(var(--rain-height));
+  }
+}
+
+/* Collection panel */
+
+#panel_4 {
+  background-color: lightskyblue;
+
+  article {
+    position: absolute;
+    z-index: 1;
+  }
+
+  svg {
+    bottom: 0;
+  }
+}
+.wave-layer {
+  animation: scroll-left linear infinite;
+  opacity: .75;
+
+  :nth-child(1 of &) {
+    fill: turquoise;
+    animation-duration: 7.65s;
+  }
+
+  :nth-child(2 of &) {
+    fill: dodgerblue;
+    animation-duration: 6s;
+    animation-delay: -2.5s;
+  }
+
+  :nth-child(3 of &) {
+    fill: teal;
+    animation-duration: 5.75s;
+    animation-delay: -3s;
+  }
+}
+@keyframes scroll-left {
+  to { transform: translateX(-1349px); } /* Width of #wavePath - 1 */
+}
+
+/* Helpers */
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 3s;
+  .animate & { opacity: 1; }
+}
+
+[data-tooltip] {
+  text-decoration: 2px white underline;
+
+  &:hover, &:focus {
+    background-color: white;
+    text-decoration: none;
+    outline: 2px solid white;
+  }
+
+  &:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    display: block;
+    padding: 4px;
+    background-color: var(--translucent-white);
+    font-weight: normal;
+  }
+}
+
+details {
+  margin-bottom: 1rem;
+  transition: background-color .2s;
+
+  &:has(summary:is(:hover, :focus)) {
+    background-color: var(--translucent-white);
+    outline: none;
+  }
+}
+summary {
+  font-size: larger;
+  font-weight: bold;
+  cursor: pointer;
+}
