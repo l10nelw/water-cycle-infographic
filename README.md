@@ -31,4 +31,6 @@ Open the HTML file in your browser.
 
 - My tooltip implementation is not screen-reader accessible. I made this less-ideal choice over a more sophisticated [tooltip role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tooltip_role) implmentation that I might try in the future, as well as the new [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) (hint type) that's not currently Baseline among all browsers.
 
+- Emojis vary in appearance depending on the platform or device displaying them.
+
 - This project is not embeddable as-is into a webpage. It would require a shadow DOM usage but it's not currently implemented.
